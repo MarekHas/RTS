@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 819193773554226279}
   - component: {fileID: 3805628454480297612}
   m_Layer: 0
-  m_Name: UnitSpawner
+  m_Name: UnitBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _unit: {fileID: 3631871846821240035, guid: 51b4b3bf2b68e8b47b790f032cb9090b, type: 3}
+  _unit: {fileID: 6332216568915511734, guid: 13a385fbf18487c4d9b08aa45c93cc74, type: 3}
   _buildPoint: {fileID: 7484936263965440079}
 --- !u!1 &1473676478798181136
 GameObject:
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473676478798181136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6612144428311419092}

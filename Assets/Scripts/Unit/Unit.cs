@@ -4,28 +4,37 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Unit : NetworkBehaviour
+namespace MH.Games.RTS
 {
-    [SerializeField] private UnityEvent _onSelected = null;
-    [SerializeField] private UnityEvent _onDeselected = null;
-
-    #region Client
-
-    [Client]
-    public void SelectUnit()
+    public class Unit : NetworkBehaviour
     {
-        if (!hasAuthority) { return; }
+        [SerializeField] private UnitMove _unitMove = null;
+        [SerializeField] private UnityEvent _onSelected = null;
+        [SerializeField] private UnityEvent _onDeselected = null;
 
-        _onSelected?.Invoke();
+        #region Client
+        public UnitMove GetUnitMove()
+        {
+            return _unitMove;
+        }
+
+        [Client]
+        public void SelectUnit()
+        {
+            if (!hasAuthority) { return; }
+
+            _onSelected?.Invoke();
+        }
+
+        [Client]
+        public void DeselectUnit()
+        {
+            if (!hasAuthority) { return; }
+
+            _onDeselected?.Invoke();
+        }
+
+        #endregion
     }
-
-    [Client]
-    public void DeselectUnit()
-    {
-        if (!hasAuthority) { return; }
-
-        _onDeselected?.Invoke();
-    }
-
-    #endregion
 }
+
