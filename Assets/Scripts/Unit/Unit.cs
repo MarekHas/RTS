@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
@@ -11,8 +12,38 @@ namespace MH.Games.RTS
         [SerializeField] private UnitMove _unitMove = null;
         [SerializeField] private UnityEvent _onSelected = null;
         [SerializeField] private UnityEvent _onDeselected = null;
+        public static event Action<Unit> OnSpawnedUnit_Server;
+        public static event Action<Unit> OnDespawnedUnit_Server;
+        public static event Action<Unit> OnSpawnedUnit_Client;
+        public static event Action<Unit> OnDespawnedUnit_Client;
+        #region Server
+        public override void OnStartServer()
+        {
+            OnSpawnedUnit_Server?.Invoke(this);
+        }
+
+        public override void OnStopServer()
+        {
+            OnDespawnedUnit_Server?.Invoke(this);
+        }
+        #endregion
 
         #region Client
+
+        public override void OnStartClient()
+        {
+            if (!isClientOnly || !hasAuthority) return;
+            
+            OnSpawnedUnit_Client?.Invoke(this);
+        }
+
+        public override void OnStopClient()
+        {
+            if (!isClientOnly || !hasAuthority) return;
+
+            OnDespawnedUnit_Client?.Invoke(this);
+        }
+
         public UnitMove GetUnitMove()
         {
             return _unitMove;
@@ -33,6 +64,8 @@ namespace MH.Games.RTS
 
             _onDeselected?.Invoke();
         }
+
+        
 
         #endregion
     }
