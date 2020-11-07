@@ -10,6 +10,8 @@ namespace MH.Games.RTS
     {
         [SerializeField]private List<Unit> _playerUnits = new List<Unit>();
 
+        public List<Unit> PlayerUnits { get => _playerUnits; private set => _playerUnits = value; }
+
         #region Server
         public override void OnStartServer()
         {
@@ -27,14 +29,14 @@ namespace MH.Games.RTS
         {
             if (unit.connectionToClient.connectionId != connectionToClient.connectionId) { return; }
        
-            _playerUnits.Add(unit);
+            PlayerUnits.Add(unit);
         }
 
         private void DespawnedUnitServerHandler(Unit unit)
         {
             if (unit.connectionToClient.connectionId != connectionToClient.connectionId) { return; }
 
-            _playerUnits.Remove(unit);
+            PlayerUnits.Remove(unit);
         }
         #endregion
 
@@ -59,12 +61,12 @@ namespace MH.Games.RTS
         {
             if (!hasAuthority) return;
 
-            _playerUnits.Add(unit);
+            PlayerUnits.Add(unit);
         }
 
         public void DespawnedUnitClientHandler(Unit unit)
         {
-            _playerUnits.Remove(unit);
+            PlayerUnits.Remove(unit);
         }
         #endregion
     }
