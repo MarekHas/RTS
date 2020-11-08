@@ -45,12 +45,16 @@ namespace MH.Games.RTS
 
         private void StartDrawSelectionArea()
         {
-            foreach (Unit unit in SelectedUnits)
+            if (!Keyboard.current.leftShiftKey.isPressed)
             {
-                unit.DeselectUnit();
+                foreach (Unit unit in SelectedUnits)
+                {
+                    unit.DeselectUnit();
+                }
+
+                SelectedUnits.Clear();
             }
 
-            SelectedUnits.Clear();
             _unitSelection.gameObject.SetActive(true);
             _drawStartingPoint = Mouse.current.position.ReadValue();
             DrawingSelectionArea();
@@ -106,6 +110,8 @@ namespace MH.Games.RTS
 
             foreach (var unit in _playerManager.PlayerUnits)
             {
+                if (SelectedUnits.Contains(unit)) continue;
+
                 Vector3 screenPos = _mainCamera.WorldToScreenPoint(unit.transform.position);
                 if(screenPos.x > min.x && screenPos.x < max.x && 
                     screenPos.y > min.y && screenPos.y < max.y)

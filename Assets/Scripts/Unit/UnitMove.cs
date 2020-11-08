@@ -11,6 +11,13 @@ namespace MH.Games.RTS
         private Camera _mainCamera;
 
         #region Server
+        [ServerCallback]
+        private void Update()
+        {
+            if (!_agent.hasPath) return;
+            if (_agent.remainingDistance > _agent.stoppingDistance) return;
+            _agent.ResetPath();
+        }
 
         [Command]
         public void CommandMove(Vector3 position)
