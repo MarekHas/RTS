@@ -68,9 +68,6 @@ namespace MH.Games.RTS
 
             _onDeselected?.Invoke();
         }
-
-        
-
         #endregion
     }
 }

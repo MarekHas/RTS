@@ -296,7 +296,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _attackedTarget: {fileID: 0}
 --- !u!114 &8789120914955725640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +311,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _weaponTip: {fileID: 1621575309982834831}
+  _attackRange: 5
 --- !u!195 &48240896980607685
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -8,6 +8,12 @@ namespace MH.Games.RTS
     public class Attack : NetworkBehaviour
     {
         [SerializeField] private Transform _weaponTip = null;
+        [SerializeField] private float _attackRange;
+
+        public float GetAttackRange()
+        {
+            return _attackRange;
+        }
 
         public Transform GetWeaponTip()
         {

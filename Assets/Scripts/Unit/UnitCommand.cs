@@ -32,7 +32,7 @@ namespace MH.Games.RTS
                     MoveUnit(hit.point);
                     return;
                 }
-                TryAttack(hit.point);
+                TryAttack(attack);
             }
             MoveUnit(hit.point);
         }
@@ -45,11 +45,11 @@ namespace MH.Games.RTS
             }
         }
 
-        private void TryAttack(Vector3 point)
+        private void TryAttack(Attack point)
         {
             foreach (Unit unit in unitSelectionHandler.SelectedUnits)
             {
-                unit.GetUnitMove().CommandMove(point);
+                unit.GetTarget().CmdSetTarget(point.gameObject);
             }
         }
     }

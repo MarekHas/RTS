@@ -14,6 +14,21 @@ namespace MH.Games.RTS
         [ServerCallback]
         private void Update()
         {
+            var attackedTarget = _target.GetAttackedTarget();
+
+            if(attackedTarget != null)
+            {
+                if((attackedTarget.transform.position - transform.position).sqrMagnitude > 
+                    Mathf.Pow(attackedTarget.GetAttackRange(),2))//chase target
+                {
+                    _agent.SetDestination(attackedTarget.transform.position);
+                }
+                else if (_agent.hasPath)
+                {
+                    _agent.ResetPath();
+                }
+                return;
+            }
             if (!_agent.hasPath) return;
             if (_agent.remainingDistance > _agent.stoppingDistance) return;
             _agent.ResetPath();

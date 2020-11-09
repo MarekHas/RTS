@@ -7,8 +7,12 @@ namespace MH.Games.RTS
 {
     public class Target : NetworkBehaviour
     {
-        [HideInInspector] [SerializeField] private Attack _attackedTarget;
+        private Attack _attackedTarget;
 
+        public Attack GetAttackedTarget()
+        {
+            return _attackedTarget;
+        }
         #region Server
 
         [Command]
