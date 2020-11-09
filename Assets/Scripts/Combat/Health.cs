@@ -13,8 +13,8 @@ namespace MH.Games.RTS
         [SyncVar]
         private int _actualHealthValue;
 
-        public event Action OnDie;
-
+        public event Action OnDie;//server
+        public event Action<int, int> OnHealthChanged;//client
         #region Server
 
         public override void OnStartServer()
@@ -40,7 +40,13 @@ namespace MH.Games.RTS
 
         #region Client
 
+        private void ChangedHealth(int previousHealth, int updatedHealth)
+        {
+            OnHealthChanged?.Invoke(updatedHealth, _maxHealth);
+        }
+
         #endregion
+
 
     }
 }
