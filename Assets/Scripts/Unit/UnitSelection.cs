@@ -19,7 +19,17 @@ namespace MH.Games.RTS
         private void Start()
         {
             _mainCamera = Camera.main;
-            _playerManager = NetworkClient.connection.identity.GetComponent<PlayerManager>();
+            Unit.OnDespawnedUnit_Client += RemoveUnit;
+        }
+        
+        private void OnDestroy()
+        {
+            Unit.OnDespawnedUnit_Client -= RemoveUnit;
+        }
+
+        private void RemoveUnit(Unit unit)
+        {
+            SelectedUnits.Remove(unit);
         }
 
         private void Update()

@@ -9,6 +9,7 @@ namespace MH.Games.RTS
 {
     public class Unit : NetworkBehaviour
     {
+        [SerializeField] private Health _health = null;
         [SerializeField] private UnitMove _unitMove = null;
         [SerializeField] private Targeting _target = null;
         [SerializeField] private UnityEvent _onSelected = null;
@@ -17,30 +18,36 @@ namespace MH.Games.RTS
         public static event Action<Unit> OnDespawnedUnit_Server;
         public static event Action<Unit> OnSpawnedUnit_Client;
         public static event Action<Unit> OnDespawnedUnit_Client;
+        
         #region Server
         public override void OnStartServer()
         {
+            _health.OnDie += OnUnitDestroyed;
             OnSpawnedUnit_Server?.Invoke(this);
         }
 
         public override void OnStopServer()
         {
+            _health.OnDie -= OnUnitDestroyed;
             OnDespawnedUnit_Server?.Invoke(this);
+        }
+
+        [Server]
+        public void OnUnitDestroyed()
+        {
+            NetworkServer.Destroy(gameObject);
         }
         #endregion
 
         #region Client
-
-        public override void OnStartClient()
+        public override void OnStartAuthority()
         {
-            if (!isClientOnly || !hasAuthority) return;
-            
             OnSpawnedUnit_Client?.Invoke(this);
         }
 
         public override void OnStopClient()
         {
-            if (!isClientOnly || !hasAuthority) return;
+            if (!hasAuthority) return;
 
             OnDespawnedUnit_Client?.Invoke(this);
         }

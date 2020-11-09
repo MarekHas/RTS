@@ -41,9 +41,9 @@ namespace MH.Games.RTS
         #endregion
 
         #region Client
-        public override void OnStartClient()
+        public override void OnStartAuthority()
         {
-            if (!isClientOnly) return;
+            if (NetworkServer.active) { return; }
 
             Unit.OnSpawnedUnit_Client += SpawnedUnitClientHandler;
             Unit.OnDespawnedUnit_Client += DespawnedUnitClientHandler;
@@ -51,7 +51,7 @@ namespace MH.Games.RTS
 
         public override void OnStopClient()
         {
-            if (!isClientOnly) return;
+            if (!isClientOnly || !hasAuthority) return;
 
             Unit.OnSpawnedUnit_Client -= SpawnedUnitClientHandler;
             Unit.OnDespawnedUnit_Client -= DespawnedUnitClientHandler;
@@ -59,8 +59,6 @@ namespace MH.Games.RTS
 
         public void SpawnedUnitClientHandler(Unit unit)
         {
-            if (!hasAuthority) return;
-
             PlayerUnits.Add(unit);
         }
 
