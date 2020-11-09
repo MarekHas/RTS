@@ -5,7 +5,6 @@ using Mirror;
 
 namespace MH.Games.RTS
 {
-    //Targeter
     public class Targeting : NetworkBehaviour
     {
         private Attackable _attackedTarget;

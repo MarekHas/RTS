@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 819193773554226279}
   - component: {fileID: 3805628454480297612}
   - component: {fileID: 6323279208593364838}
+  - component: {fileID: 922704812073141940}
   m_Layer: 0
   m_Name: UnitBuilder
   m_TagString: Untagged
@@ -98,6 +99,21 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _aimPoint: {fileID: 3236915635028022024}
+--- !u!114 &922704812073141940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79110774225819355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc8955890cfb9446ab98cd4deea65f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _maxHealth: 100
 --- !u!1 &1148826602282904645
 GameObject:
   m_ObjectHideFlags: 0
