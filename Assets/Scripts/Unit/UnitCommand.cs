@@ -25,10 +25,27 @@ namespace MH.Games.RTS
 
             if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) { return; }
 
+            if(hit.collider.TryGetComponent<Attack>(out Attack attack))
+            {
+                if (attack.hasAuthority)
+                {
+                    MoveUnit(hit.point);
+                    return;
+                }
+                TryAttack(hit.point);
+            }
             MoveUnit(hit.point);
         }
 
         private void MoveUnit(Vector3 point)
+        {
+            foreach (Unit unit in unitSelectionHandler.SelectedUnits)
+            {
+                unit.GetUnitMove().CommandMove(point);
+            }
+        }
+
+        private void TryAttack(Vector3 point)
         {
             foreach (Unit unit in unitSelectionHandler.SelectedUnits)
             {

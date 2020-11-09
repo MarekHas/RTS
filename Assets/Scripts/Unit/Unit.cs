@@ -10,6 +10,7 @@ namespace MH.Games.RTS
     public class Unit : NetworkBehaviour
     {
         [SerializeField] private UnitMove _unitMove = null;
+        [SerializeField] private Target _target = null;
         [SerializeField] private UnityEvent _onSelected = null;
         [SerializeField] private UnityEvent _onDeselected = null;
         public static event Action<Unit> OnSpawnedUnit_Server;
@@ -48,7 +49,10 @@ namespace MH.Games.RTS
         {
             return _unitMove;
         }
-
+        public Target GetTarget()
+        {
+            return _target;
+        }
         [Client]
         public void SelectUnit()
         {

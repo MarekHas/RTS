@@ -175,6 +175,8 @@ GameObject:
   - component: {fileID: 5424017797008087893}
   - component: {fileID: 5997018915713572632}
   - component: {fileID: 4764015441490939688}
+  - component: {fileID: 8814966675071227784}
+  - component: {fileID: 8789120914955725640}
   - component: {fileID: 48240896980607685}
   - component: {fileID: 5041537350048960586}
   - component: {fileID: 8423266952072742009}
@@ -198,6 +200,7 @@ Transform:
   m_Children:
   - {fileID: 3368145960142891839}
   - {fileID: 5238145819118249421}
+  - {fileID: 1621575309982834831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,6 +235,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _unitMove: {fileID: 4764015441490939688}
+  _target: {fileID: 8814966675071227784}
   _onSelected:
     m_PersistentCalls:
       m_Calls:
@@ -277,6 +281,37 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _agent: {fileID: 48240896980607685}
+  _target: {fileID: 8814966675071227784}
+--- !u!114 &8814966675071227784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332216568915511734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac75a54d53c78e946b770e34439db51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _attackedTarget: {fileID: 0}
+--- !u!114 &8789120914955725640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332216568915511734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682acfbc381839c48b9db24ead290f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _weaponTip: {fileID: 1621575309982834831}
 --- !u!195 &48240896980607685
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -330,3 +365,33 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!1 &7190311320999823075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621575309982834831}
+  m_Layer: 0
+  m_Name: WeaponTip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621575309982834831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190311320999823075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2613561325290108639}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
