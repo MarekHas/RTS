@@ -7,7 +7,8 @@ namespace MH.Games.RTS
     public class UnitMove : NetworkBehaviour
     {
         [SerializeField] private NavMeshAgent _agent = null;
-        [SerializeField] private Target _target;
+        [SerializeField] private Targeting _target;
+        [SerializeField] private UnitAttack _unitAttack;
         private Camera _mainCamera;
 
         #region Server
@@ -19,7 +20,7 @@ namespace MH.Games.RTS
             if(attackedTarget != null)
             {
                 if((attackedTarget.transform.position - transform.position).sqrMagnitude > 
-                    Mathf.Pow(attackedTarget.GetAttackRange(),2))//chase target
+                    Mathf.Pow(_unitAttack.FireRange,2))
                 {
                     _agent.SetDestination(attackedTarget.transform.position);
                 }

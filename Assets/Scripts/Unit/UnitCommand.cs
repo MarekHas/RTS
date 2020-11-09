@@ -25,14 +25,15 @@ namespace MH.Games.RTS
 
             if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask)) { return; }
 
-            if(hit.collider.TryGetComponent<Attack>(out Attack attack))
+            if(hit.collider.TryGetComponent(out Attackable attackedTarget))
             {
-                if (attack.hasAuthority)
+                if (attackedTarget.hasAuthority)
                 {
                     MoveUnit(hit.point);
                     return;
                 }
-                TryAttack(attack);
+                TryAttack(attackedTarget);
+                return;
             }
             MoveUnit(hit.point);
         }
@@ -45,11 +46,11 @@ namespace MH.Games.RTS
             }
         }
 
-        private void TryAttack(Attack point)
+        private void TryAttack(Attackable attackedTarget)
         {
             foreach (Unit unit in unitSelectionHandler.SelectedUnits)
             {
-                unit.GetTarget().CmdSetTarget(point.gameObject);
+                unit.GetTarget().CmdSetTarget(attackedTarget.gameObject);
             }
         }
     }

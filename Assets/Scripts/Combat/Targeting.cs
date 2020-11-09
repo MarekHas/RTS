@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEditor;
+
 namespace MH.Games.RTS
 {
-    public class Target : NetworkBehaviour
+    //Targeter
+    public class Targeting : NetworkBehaviour
     {
-        private Attack _attackedTarget;
+        private Attackable _attackedTarget;
 
-        public Attack GetAttackedTarget()
+        public Attackable GetAttackedTarget()
         {
             return _attackedTarget;
         }
@@ -18,9 +19,10 @@ namespace MH.Games.RTS
         [Command]
         public void CmdSetTarget(GameObject targetGameObject)
         {
-            if (!targetGameObject.TryGetComponent<Attack>(out Attack newTarget)) { return; }
+            if (!targetGameObject.TryGetComponent<Attackable>(out Attackable newTarget)) { return; }
 
             _attackedTarget = newTarget;
+            Debug.Log("Attack!!!" + _attackedTarget.gameObject.name);
         }
 
         [Server]
