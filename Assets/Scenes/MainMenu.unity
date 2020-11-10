@@ -310,16 +310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManger
       objectReference: {fileID: 0}
-    - target: {fileID: 2870776386192289715, guid: 51a43c16f4844a74db8ea08270e93440,
-        type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2870776386192289715, guid: 51a43c16f4844a74db8ea08270e93440,
-        type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/Level_01.unity
-      objectReference: {fileID: 0}
     - target: {fileID: 2870776386192289716, guid: 51a43c16f4844a74db8ea08270e93440,
         type: 3}
       propertyPath: m_LocalPosition.x

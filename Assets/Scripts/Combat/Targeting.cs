@@ -9,6 +9,16 @@ namespace MH.Games.RTS
     {
         private Attackable _attackedTarget;
 
+        public override void OnStartServer()
+        {
+            GameOverManager.ServerOnGameOver += GameOverHandler;
+        }
+
+        public override void OnStopServer()
+        {
+            GameOverManager.ServerOnGameOver -= GameOverHandler;
+        }
+      
         public Attackable GetAttackedTarget()
         {
             return _attackedTarget;
@@ -30,6 +40,10 @@ namespace MH.Games.RTS
             _attackedTarget = null;
         }
 
+        private void GameOverHandler()
+        {
+            ClearTarget();
+        }
         #endregion
 
         #region Client

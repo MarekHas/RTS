@@ -20,16 +20,23 @@ namespace MH.Games.RTS
         {
             _mainCamera = Camera.main;
             Unit.OnDespawnedUnit_Client += RemoveUnit;
+            GameOverManager.ClientOnFinishedGame += ClientFinishedGameHandler;
         }
         
         private void OnDestroy()
         {
             Unit.OnDespawnedUnit_Client -= RemoveUnit;
+            GameOverManager.ClientOnFinishedGame -= ClientFinishedGameHandler;
         }
 
         private void RemoveUnit(Unit unit)
         {
             SelectedUnits.Remove(unit);
+        }
+
+        private void ClientFinishedGameHandler(string winnerName)
+        {
+            enabled = false;
         }
 
         private void Update()

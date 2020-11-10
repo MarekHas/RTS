@@ -27,7 +27,8 @@ namespace MH.Games.RTS
         [Server]
         private void OnBuildingDestroyed()
         {
-            NetworkServer.Destroy(gameObject);
+            //will be hanged later
+            //NetworkServer.Destroy(gameObject);
         }
 
         [Command]

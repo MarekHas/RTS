@@ -1,4 +1,5 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,22 @@ namespace MH.Games.RTS
         private Camera _mainCamera;
 
         #region Server
+        public override void OnStartServer()
+        {
+            GameOverManager.ServerOnGameOver += GameOverHandler;
+        }
+
+        public override void OnStopServer()
+        {
+            GameOverManager.ServerOnGameOver -= GameOverHandler;
+        }
+
+        [Server]
+        private void GameOverHandler()
+        {
+            _agent.ResetPath();
+        }
+
         [ServerCallback]
         private void Update()
         {

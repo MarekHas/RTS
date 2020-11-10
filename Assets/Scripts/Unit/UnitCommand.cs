@@ -15,6 +15,17 @@ namespace MH.Games.RTS
         private void Start()
         {
             mainCamera = Camera.main;
+            GameOverManager.ClientOnFinishedGame += ClientFinishedGameHandler;
+        }
+
+        private void OnDestroy()
+        {
+            GameOverManager.ClientOnFinishedGame -= ClientFinishedGameHandler;
+        }
+
+        private void ClientFinishedGameHandler(string name)
+        {
+            enabled = false;
         }
 
         private void Update()
