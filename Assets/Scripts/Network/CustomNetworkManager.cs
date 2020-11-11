@@ -8,7 +8,7 @@ namespace MH.Games.RTS
 {
     public class CustomNetworkManager : NetworkManager
     {
-        [SerializeField] private GameObject _unitBuilder = null;
+        [SerializeField] private GameObject _headquarter = null;
         [SerializeField] private GameOverManager _gameOverManagerPrefab = null;
 
         public override void OnServerAddPlayer(NetworkConnection conectionToTheClient)
@@ -16,7 +16,7 @@ namespace MH.Games.RTS
             base.OnServerAddPlayer(conectionToTheClient);
 
             GameObject unitBuilderInstance = 
-                Instantiate(_unitBuilder, 
+                Instantiate(_headquarter, 
                 conectionToTheClient.identity.transform.position, 
                 conectionToTheClient.identity.transform.rotation);
 

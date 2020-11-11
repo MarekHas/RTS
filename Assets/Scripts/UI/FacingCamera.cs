@@ -22,4 +22,3 @@ namespace MH.Games.RTS
         }
     }
 }
-
