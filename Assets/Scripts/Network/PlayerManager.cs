@@ -11,7 +11,12 @@ namespace MH.Games.RTS
         [SerializeField] private Building[] _allBuildingsInGame = new Building[0];
         public List<Unit> PlayerUnits { get; private set; } = new List<Unit>();
         public List<Building> Buildings { get; private set; } = new List<Building>();
-        
+
+        [SyncVar(hook = nameof(ResourcesValueUpdate))]
+        private int _resources = 500;
+        public int Resources { get; }
+        public event Action<int> OnResourcesChanged;
+
         #region Server
         public override void OnStartServer()
         {
@@ -100,6 +105,11 @@ namespace MH.Games.RTS
             Unit.OnDespawnedUnit_Client -= DespawnedUnitClientHandler;
             Building.OnConstructionAuthority -= ConstructionBuildingAuthorityHandler;
             Building.OnDemolitionAuthority -= DemolitionBuildingAuthorityHandler;
+        }
+
+        private void ResourcesValueUpdate(int previousValue, int actualValue)
+        {
+            OnResourcesChanged?.Invoke(actualValue);
         }
 
         private void DemolitionBuildingAuthorityHandler(Building building)
