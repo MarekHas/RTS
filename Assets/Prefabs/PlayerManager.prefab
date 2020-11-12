@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8230425078101650383}
   - component: {fileID: 2903396954296384362}
   m_Layer: 0
-  m_Name: PlayerEmpty
+  m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,3 +64,4 @@ MonoBehaviour:
   syncInterval: 0.1
   _allBuildingsInGame:
   - {fileID: 4310390948405428451, guid: aa8005a1fc4fd5646859005f1382ad9c, type: 3}
+  - {fileID: 4310390948405428451, guid: 0c1583bf7f0f6a14db7d584f76853dbd, type: 3}

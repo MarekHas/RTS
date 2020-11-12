@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 8472318981050565533}
   - component: {fileID: 7804281837304628250}
   - component: {fileID: 1498751620281315243}
+  - component: {fileID: 7456274192944435231}
   m_Layer: 0
   m_Name: UI Construction Button
   m_TagString: Untagged
@@ -286,3 +287,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7456274192944435231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913649371887443530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc596ed3e99107c4aa869c9f21a8afb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _building: {fileID: 4310390948405428451, guid: aa8005a1fc4fd5646859005f1382ad9c,
+    type: 3}
+  _buildingSymbol: {fileID: 435196313441685855}
+  _constructionCost: {fileID: 8270890825468084437}
+  _floorLayer:
+    serializedVersion: 2
+    m_Bits: 4096

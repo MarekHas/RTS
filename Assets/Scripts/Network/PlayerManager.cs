@@ -14,8 +14,14 @@ namespace MH.Games.RTS
 
         [SyncVar(hook = nameof(ResourcesValueUpdate))]
         private int _resources = 500;
-        public int Resources { get; }
+ 
         public event Action<int> OnResourcesChanged;
+
+        public int GetResources()
+        {
+            return _resources;
+        }
+
 
         #region Server
         public override void OnStartServer()
@@ -33,7 +39,11 @@ namespace MH.Games.RTS
             Building.OnConstructionServer -= ConstructionBuildigHandler;
             Building.OnDemolitionServer -= DemolitionBuildingHandler;
         }
-
+        [Server]
+        public void SetResources(int newResources)
+        {
+            _resources = newResources;
+        }
         [Command]
         public void TryPutBuilding(int buildingId, Vector3 point)
         {

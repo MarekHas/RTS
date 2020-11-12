@@ -19,7 +19,7 @@ namespace MH.Games.RTS
 
                 if (_playerManager != null)
                 {
-                    ResoucesChangedHandler(_playerManager.Resources);
+                    ResoucesChangedHandler(_playerManager.GetResources());
 
                     _playerManager.OnResourcesChanged += ResoucesChangedHandler;
                 }
