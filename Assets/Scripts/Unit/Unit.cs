@@ -9,6 +9,7 @@ namespace MH.Games.RTS
 {
     public class Unit : NetworkBehaviour
     {
+        [SerializeField] private int _cost = 10;
         [SerializeField] private Health _health = null;
         [SerializeField] private UnitMove _unitMove = null;
         [SerializeField] private Targeting _target = null;
@@ -19,6 +20,7 @@ namespace MH.Games.RTS
         public static event Action<Unit> OnSpawnedUnit_Client;
         public static event Action<Unit> OnDespawnedUnit_Client;
         
+        public int Cost { get; }
         #region Server
         public override void OnStartServer()
         {
