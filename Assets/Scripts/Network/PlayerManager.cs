@@ -8,13 +8,15 @@ namespace MH.Games.RTS
 {
     public class PlayerManager : NetworkBehaviour
     {
+        [SerializeField]private LayerMask _buildingsLayer= new LayerMask();
         [SerializeField] private Building[] _allBuildingsInGame = new Building[0];
+        [SerializeField] private float _range = 5f;
         public List<Unit> PlayerUnits { get; private set; } = new List<Unit>();
         public List<Building> Buildings { get; private set; } = new List<Building>();
 
         [SyncVar(hook = nameof(ResourcesValueUpdate))]
         private int _resources = 500;
- 
+
         public event Action<int> OnResourcesChanged;
 
         public int GetResources()
@@ -22,6 +24,29 @@ namespace MH.Games.RTS
             return _resources;
         }
 
+        public bool IsPlacingBuildingPossible(BoxCollider boxCollider,Vector3 point)
+        {
+
+            if (Physics.CheckBox(
+                point + boxCollider.center,
+                boxCollider.size / 2,
+                Quaternion.identity,
+                _buildingsLayer))
+            {
+                return false;
+            }
+
+            foreach (var building in Buildings)
+            {
+                if ((point - building.transform.position).sqrMagnitude <=
+                    _range * _range)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         #region Server
         public override void OnStartServer()
@@ -60,10 +85,17 @@ namespace MH.Games.RTS
 
             if (buildingToPlace == null) { return; }
 
+            if(_resources < buildingToPlace.Cost) { return; }
+
+            BoxCollider buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+
+            if (!IsPlacingBuildingPossible(buildingCollider,point)) { return; }
+
             GameObject buildingInstance =
                 Instantiate(buildingToPlace.gameObject, point, buildingToPlace.transform.rotation);
 
             NetworkServer.Spawn(buildingInstance, connectionToClient);
+            SetResources(_resources - buildingToPlace.Cost);
         }
 
         private void SpawnedUnitServerHandler(Unit unit)
