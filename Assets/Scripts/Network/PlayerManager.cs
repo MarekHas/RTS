@@ -8,6 +8,7 @@ namespace MH.Games.RTS
 {
     public class PlayerManager : NetworkBehaviour
     {
+        [SerializeField] private Transform cameraTransform = null;
         [SerializeField] private LayerMask _blockingLayers = new LayerMask();
         [SerializeField] private Building[] _allBuildingsInGame = new Building[0];
         [SerializeField] private float _range = 5f;
@@ -25,6 +26,12 @@ namespace MH.Games.RTS
         {
             return _resources;
         }
+
+        public Transform GetCameraTransform()
+        {
+            return cameraTransform;
+        }
+
         public Color PlayerColor { get; }
         public bool IsPlacingBuildingPossible(BoxCollider boxCollider,Vector3 point)
         {
