@@ -64,6 +64,22 @@ MonoBehaviour:
   _maxUnitInQueue: 5
   _moveRangeAfterSpawned: 5
   _buildTime: 5
+--- !u!114 &6833510302625524935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862237166286589939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab5fb5ea14153647a40164e02be30dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  colorRenderers:
+  - {fileID: 7346686891967843611}
 --- !u!1 &3212005854323885063
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,11 +464,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5370965903308480614, guid: 7fba97280cc4fc34aa40e669d273a7ba,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 82073f3c9941b994d8ee4438fcecaacb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fba97280cc4fc34aa40e669d273a7ba, type: 3}
 --- !u!1 &2413577549825047343 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1009811527445845586, guid: 7fba97280cc4fc34aa40e669d273a7ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 3421941618296286589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7346686891967843611 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5370965903308480614, guid: 7fba97280cc4fc34aa40e669d273a7ba,
     type: 3}
   m_PrefabInstance: {fileID: 3421941618296286589}
   m_PrefabAsset: {fileID: 0}

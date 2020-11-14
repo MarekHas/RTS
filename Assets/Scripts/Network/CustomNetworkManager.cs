@@ -10,10 +10,15 @@ namespace MH.Games.RTS
     {
         [SerializeField] private GameObject _headquarter = null;
         [SerializeField] private GameOverManager _gameOverManagerPrefab = null;
-
+        
         public override void OnServerAddPlayer(NetworkConnection conectionToTheClient)
         {
             base.OnServerAddPlayer(conectionToTheClient);
+
+            PlayerManager playerManager = conectionToTheClient.identity.GetComponent<PlayerManager>();
+            playerManager.SetPlayerColor(
+                new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f))
+                );
 
             GameObject unitBuilderInstance = 
                 Instantiate(_headquarter, 

@@ -8,7 +8,7 @@ namespace MH.Games.RTS
 {
     public class PlayerManager : NetworkBehaviour
     {
-        [SerializeField]private LayerMask _buildingsLayer= new LayerMask();
+        [SerializeField] private LayerMask _blockingLayers = new LayerMask();
         [SerializeField] private Building[] _allBuildingsInGame = new Building[0];
         [SerializeField] private float _range = 5f;
         public List<Unit> PlayerUnits { get; private set; } = new List<Unit>();
@@ -17,35 +17,36 @@ namespace MH.Games.RTS
         [SyncVar(hook = nameof(ResourcesValueUpdate))]
         private int _resources = 500;
 
+        private Color _playerColor = new Color();
+
         public event Action<int> OnResourcesChanged;
 
         public int GetResources()
         {
             return _resources;
         }
-
+        public Color PlayerColor { get; }
         public bool IsPlacingBuildingPossible(BoxCollider boxCollider,Vector3 point)
         {
+            return true;
+            //if (Physics.CheckBox(
+            //    point + boxCollider.center,
+            //    boxCollider.size / 2,
+            //    Quaternion.identity,
+            //    _blockingLayers))
+            //{
+            //    return false;
+            //}
 
-            if (Physics.CheckBox(
-                point + boxCollider.center,
-                boxCollider.size / 2,
-                Quaternion.identity,
-                _buildingsLayer))
-            {
-                return false;
-            }
+            //foreach (var building in Buildings)
+            //{
+            //    if ((point - building.transform.position).sqrMagnitude <= _range * _range)
+            //    {
+            //        return true;
+            //    }
+            //}
 
-            foreach (var building in Buildings)
-            {
-                if ((point - building.transform.position).sqrMagnitude <=
-                    _range * _range)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            //return false;
         }
 
         #region Server
@@ -64,11 +65,19 @@ namespace MH.Games.RTS
             Building.OnConstructionServer -= ConstructionBuildigHandler;
             Building.OnDemolitionServer -= DemolitionBuildingHandler;
         }
+
         [Server]
         public void SetResources(int newResources)
         {
             _resources = newResources;
         }
+
+        [Server]
+        public void SetPlayerColor(Color color)
+        {
+            _playerColor = color;
+        }
+
         [Command]
         public void TryPutBuilding(int buildingId, Vector3 point)
         {

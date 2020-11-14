@@ -82,6 +82,7 @@ namespace MH.Games.RTS
             {
                 _previewBuilding.SetActive(true);
             }
+
             Color color = _playerManager.IsPlacingBuildingPossible(_buidligCollider,hit.point) ? Color.green : Color.red;
 
             _buildingRenderer.material.SetColor("_BaseColor", color);

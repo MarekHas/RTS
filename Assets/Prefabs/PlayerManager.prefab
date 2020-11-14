@@ -62,10 +62,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  _buildingsLayer:
+  _blockingLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   _allBuildingsInGame:
   - {fileID: 4310390948405428451, guid: aa8005a1fc4fd5646859005f1382ad9c, type: 3}
   - {fileID: 4310390948405428451, guid: 0c1583bf7f0f6a14db7d584f76853dbd, type: 3}
-  _range: 5
+  _range: 10
