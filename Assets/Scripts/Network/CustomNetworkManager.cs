@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
+using System;
+using Random = UnityEngine.Random;
 
 namespace MH.Games.RTS
 {
@@ -10,7 +12,23 @@ namespace MH.Games.RTS
     {
         [SerializeField] private GameObject _headquarter = null;
         [SerializeField] private GameOverManager _gameOverManagerPrefab = null;
-        
+        public static event Action ClientOnConnected;
+        public static event Action ClientOnDisconnected;
+
+        public override void OnClientConnect(NetworkConnection connection)
+        {
+            base.OnClientConnect(connection);
+
+            ClientOnConnected?.Invoke();
+        }
+
+        public override void OnClientDisconnect(NetworkConnection connection)
+        {
+            base.OnClientDisconnect(connection);
+
+            ClientOnDisconnected?.Invoke();
+        }
+
         public override void OnServerAddPlayer(NetworkConnection conectionToTheClient)
         {
             base.OnServerAddPlayer(conectionToTheClient);
