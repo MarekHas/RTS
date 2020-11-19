@@ -19,4 +19,3 @@ namespace MH.Games.RTS
 
     }
 }
-
